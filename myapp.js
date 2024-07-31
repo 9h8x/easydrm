@@ -1,4 +1,4 @@
-const manifestUri = 'https://edge-live02-mun.cvattv.com.ar/live/c7eds/AnimalPlanet/SA_Live_dash_enc/AnimalPlanet.mpd';
+manifestUri = 'https://edge-live02-mun.cvattv.com.ar/live/c7eds/AnimalPlanet/SA_Live_dash_enc/AnimalPlanet.mpd';
 
 function initApp() {
   // Install built-in polyfills to patch browser incompatibilities.
@@ -57,6 +57,36 @@ function onErrorEvent(event) {
 function onError(error) {
   // Log the error.
   console.error('Error code', error.code, 'object', error);
+}
+
+function cambiarAESPN() {
+  player.configure({
+    drm: {
+      servers: {
+        'org.w3.clearkey': '' // No server URL needed for ClearKey
+      },
+      clearKeys: {
+        'e884b711ab111beb8a7ba1e7bcbdc9bf': 'cb89ee3961599e3e648a5aad60895f34'
+      }
+    }
+  });
+  manifestUri = 'https://edge-live02-mun.cvattv.com.ar/live/c3eds/ESPN2HD/SA_Live_dash_enc/ESPN2HD.mpd';
+  player.load(manifestUri)
+}
+
+function cambiarAAnimalPlanet() {
+  player.configure({
+    drm: {
+      servers: {
+        'org.w3.clearkey': '' // No server URL needed for ClearKey
+      },
+      clearKeys: {
+        '4146A8ECBB0540DC807C6389EE87E0BC': '0C3CDC1B3E4617C57361265E9FA4C5BD'
+      }
+    }
+  });
+  manifestUri = 'https://edge-live02-mun.cvattv.com.ar/live/c7eds/AnimalPlanet/SA_Live_dash_enc/AnimalPlanet.mpd';
+  player.load(manifestUri)
 }
 
 document.addEventListener('DOMContentLoaded', initApp);
